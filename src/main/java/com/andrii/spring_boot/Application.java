@@ -1,13 +1,36 @@
 package com.andrii.spring_boot;
 
+import com.andrii.spring_boot.model.Book;
+import com.andrii.spring_boot.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Application {
+    @Autowired
+    private BookService bookService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+        SpringApplication.run(Application.class, args);
+        System.out.println("App runs");
+
 	}
+
+    @Bean
+    public CommandLineRunner commandLineRunner() {
+        return new CommandLineRunner() {
+            @Override
+            public void run(String... args) throws Exception {
+                Book book = new Book();
+                book.setTitle("Hook");
+
+                Book savedBook = bookService.save(book);
+                System.out.println(savedBook);
+            }
+        };
+    }
 
 }
