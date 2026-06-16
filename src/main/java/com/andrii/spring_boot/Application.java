@@ -15,8 +15,6 @@ public class Application {
 
 	public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        System.out.println("App runs");
-
 	}
 
     @Bean
@@ -28,7 +26,8 @@ public class Application {
                 book.setTitle("Hook");
 
                 Book savedBook = bookService.save(book);
-                System.out.println(savedBook);
+
+                System.out.println(bookService.findAll());
             }
         };
     }
