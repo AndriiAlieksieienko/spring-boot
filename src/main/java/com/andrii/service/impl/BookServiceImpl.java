@@ -1,18 +1,16 @@
-package com.andrii.spring_boot.service.impl;
+package com.andrii.service.impl;
 
-import com.andrii.spring_boot.model.Book;
-import com.andrii.spring_boot.repository.BookRepository;
-import com.andrii.spring_boot.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-
+import com.andrii.model.Book;
+import com.andrii.repository.BookRepository;
+import com.andrii.service.BookService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
 
     @Override
     public Book save(Book book) {

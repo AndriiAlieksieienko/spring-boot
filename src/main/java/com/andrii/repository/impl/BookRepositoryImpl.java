@@ -1,22 +1,23 @@
-package com.andrii.spring_boot.repository.impl;
+package com.andrii.repository.impl;
 
-import com.andrii.spring_boot.model.Book;
-import com.andrii.spring_boot.repository.BookRepository;
+import com.andrii.model.Book;
+import com.andrii.repository.BookRepository;
 import jakarta.persistence.criteria.CriteriaQuery;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public class BookRepositoryImpl implements BookRepository {
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public BookRepositoryImpl(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
+    public BookRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public Book save(Book book) {

@@ -1,9 +1,10 @@
-package com.andrii.spring_boot.repository;
+package com.andrii.repository;
 
+import com.andrii.model.Book;
 import java.util.List;
-import com.andrii.spring_boot.model.Book;
 
 public interface BookRepository {
     Book save(Book book);
+
     List<Book> findAll();
 }

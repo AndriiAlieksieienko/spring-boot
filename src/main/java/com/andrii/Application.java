@@ -1,7 +1,7 @@
-package com.andrii.spring_boot;
+package com.andrii;
 
-import com.andrii.spring_boot.model.Book;
-import com.andrii.spring_boot.service.BookService;
+import com.andrii.model.Book;
+import com.andrii.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,9 +13,9 @@ public class Application {
     @Autowired
     private BookService bookService;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-	}
+    }
 
     @Bean
     public CommandLineRunner commandLineRunner() {
@@ -31,5 +31,4 @@ public class Application {
             }
         };
     }
-
 }
