@@ -1,5 +1,6 @@
 package com.andrii.repository.impl;
 
+import com.andrii.exception.DataProcessingException;
 import com.andrii.model.Book;
 import com.andrii.repository.BookRepository;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -33,7 +34,7 @@ public class BookRepositoryImpl implements BookRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't insert a book: " + book, e);
+            throw new DataProcessingException("Can't insert a book: " + book, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -49,7 +50,7 @@ public class BookRepositoryImpl implements BookRepository {
             criteriaQuery.from(Book.class);
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get all books", e);
+            throw new DataProcessingException("Can't get all books", e);
         }
     }
 }
