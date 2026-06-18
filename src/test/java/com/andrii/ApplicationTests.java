@@ -1,4 +1,4 @@
-package com.andrii.spring_boot;
+package com.andrii;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
