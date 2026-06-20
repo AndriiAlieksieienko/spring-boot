@@ -1,10 +1,13 @@
 package com.andrii.service;
 
-import com.andrii.model.Book;
+import com.andrii.dto.BookDto;
+import com.andrii.dto.CreateBookRequestDto;
 import java.util.List;
 
 public interface BookService {
-    Book save(Book book);
+    BookDto save(CreateBookRequestDto book);
 
-    List<Book> findAll();
+    BookDto findById(Long id);
+
+    List<BookDto> findAll();
 }
