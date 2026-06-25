@@ -2,6 +2,7 @@ package com.andrii.service;
 
 import com.andrii.dto.BookDto;
 import com.andrii.dto.CreateBookRequestDto;
+import com.andrii.dto.UpdateBookRequestDto;
 import java.util.List;
 
 public interface BookService {
@@ -10,4 +11,8 @@ public interface BookService {
     BookDto findById(Long id);
 
     List<BookDto> findAll();
+
+    void deleteById(Long id);
+
+    BookDto updateBookById(Long id, UpdateBookRequestDto requestDto);
 }
