@@ -1,6 +1,7 @@
 package com.andrii.controller;
 
 import com.andrii.dto.BookDto;
+import com.andrii.dto.BookSearchParameters;
 import com.andrii.dto.CreateBookRequestDto;
 import com.andrii.dto.UpdateBookRequestDto;
 import com.andrii.service.BookService;
@@ -50,5 +51,10 @@ public class BookController {
             @RequestBody UpdateBookRequestDto requestDto
     ) {
         return bookService.updateBookById(id, requestDto);
+    }
+
+    @GetMapping("/search")
+    public List<BookDto> search(BookSearchParameters searchParameters) {
+        return bookService.search(searchParameters);
     }
 }
