@@ -30,9 +30,7 @@ public class Book {
     private String isbn;
     @Column(nullable = false)
     private BigDecimal price;
-    @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
     private String coverImage;
     @Column(nullable = false)
     private boolean isDeleted = false;
