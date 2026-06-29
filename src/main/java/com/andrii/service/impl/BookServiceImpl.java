@@ -1,15 +1,18 @@
 package com.andrii.service.impl;
 
 import com.andrii.dto.BookDto;
+import com.andrii.dto.BookSearchParameters;
 import com.andrii.dto.CreateBookRequestDto;
 import com.andrii.dto.UpdateBookRequestDto;
 import com.andrii.exception.EntityNotFoundException;
 import com.andrii.mapper.BookMapper;
 import com.andrii.model.Book;
-import com.andrii.repository.BookRepository;
+import com.andrii.repository.book.BookRepository;
+import com.andrii.repository.book.BookSpecificationBuilder;
 import com.andrii.service.BookService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Service;
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
+    private final BookSpecificationBuilder bookSpecificationBuilder;
 
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
@@ -49,6 +53,15 @@ public class BookServiceImpl implements BookService {
 
         Book updatedBook = bookRepository.save(book);
         return bookMapper.toDto(updatedBook);
+    }
+
+    @Override
+    public List<BookDto> search(BookSearchParameters params) {
+        Specification<Book> bookSpecification = bookSpecificationBuilder.build(params);
+        return bookRepository.findAll(bookSpecification)
+                .stream()
+                .map(bookMapper::toDto)
+                .toList();
     }
 
     private Book findBookById(Long id) {
