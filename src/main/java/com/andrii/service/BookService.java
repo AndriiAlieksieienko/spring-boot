@@ -5,13 +5,15 @@ import com.andrii.dto.BookSearchParameters;
 import com.andrii.dto.CreateBookRequestDto;
 import com.andrii.dto.UpdateBookRequestDto;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface BookService {
     BookDto save(CreateBookRequestDto book);
 
     BookDto findById(Long id);
 
-    List<BookDto> findAll();
+    Page<BookDto> findAll(Pageable pageable);
 
     void deleteById(Long id);
 
