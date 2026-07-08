@@ -1,6 +1,6 @@
 package com.andrii.repository.book;
 
-import com.andrii.dto.book.BookSearchParameters;
+import com.andrii.dto.BookSearchParameters;
 import com.andrii.model.Book;
 import com.andrii.repository.SpecificationBuilder;
 import com.andrii.repository.SpecificationProviderManager;

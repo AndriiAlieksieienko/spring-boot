@@ -1,4 +1,4 @@
-package com.andrii.validation.isbn;
+package com.andrii.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

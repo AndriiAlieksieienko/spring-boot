@@ -1,4 +1,4 @@
-package com.andrii.dto.book;
+package com.andrii.dto;
 
 public record BookSearchParameters(String[] titles, String[] authors) {
 }
