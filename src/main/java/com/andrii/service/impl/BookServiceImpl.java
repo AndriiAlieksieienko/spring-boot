@@ -1,9 +1,9 @@
 package com.andrii.service.impl;
 
-import com.andrii.dto.BookDto;
-import com.andrii.dto.BookSearchParameters;
-import com.andrii.dto.CreateBookRequestDto;
-import com.andrii.dto.UpdateBookRequestDto;
+import com.andrii.dto.book.BookDto;
+import com.andrii.dto.book.BookSearchParameters;
+import com.andrii.dto.book.CreateBookRequestDto;
+import com.andrii.dto.book.UpdateBookRequestDto;
 import com.andrii.exception.EntityNotFoundException;
 import com.andrii.mapper.BookMapper;
 import com.andrii.model.Book;

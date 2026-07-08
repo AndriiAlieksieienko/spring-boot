@@ -1,9 +1,9 @@
 package com.andrii.controller;
 
-import com.andrii.dto.BookDto;
-import com.andrii.dto.BookSearchParameters;
-import com.andrii.dto.CreateBookRequestDto;
-import com.andrii.dto.UpdateBookRequestDto;
+import com.andrii.dto.book.BookDto;
+import com.andrii.dto.book.BookSearchParameters;
+import com.andrii.dto.book.CreateBookRequestDto;
+import com.andrii.dto.book.UpdateBookRequestDto;
 import com.andrii.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
