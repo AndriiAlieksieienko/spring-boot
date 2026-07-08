@@ -1,4 +1,4 @@
-package com.andrii.dto;
+package com.andrii.dto.book;
 
 import java.math.BigDecimal;
 import lombok.Getter;

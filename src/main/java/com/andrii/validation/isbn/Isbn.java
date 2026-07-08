@@ -1,4 +1,4 @@
-package com.andrii.validation;
+package com.andrii.validation.isbn;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
