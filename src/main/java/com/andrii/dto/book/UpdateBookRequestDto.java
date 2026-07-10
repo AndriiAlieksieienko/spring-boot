@@ -1,6 +1,6 @@
-package com.andrii.dto;
+package com.andrii.dto.book;
 
-import com.andrii.validation.Isbn;
+import com.andrii.validation.isbn.Isbn;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateBookRequestDto {
+public class UpdateBookRequestDto {
     @NotBlank
     private String title;
     @NotBlank

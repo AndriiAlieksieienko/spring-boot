@@ -1,6 +1,6 @@
 package com.andrii.repository;
 
-import com.andrii.dto.BookSearchParameters;
+import com.andrii.dto.book.BookSearchParameters;
 import org.springframework.data.jpa.domain.Specification;
 
 public interface SpecificationBuilder<T> {
