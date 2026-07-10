@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-default-roles
+      author: freeman
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_USER
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_ADMIN
