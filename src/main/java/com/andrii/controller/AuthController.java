@@ -1,7 +1,10 @@
 package com.andrii.controller;
 
+import com.andrii.dto.user.UserLoginRequestDto;
+import com.andrii.dto.user.UserLoginResponseDto;
 import com.andrii.dto.user.UserRegistrationRequestDto;
 import com.andrii.dto.user.UserResponseDto;
+import com.andrii.security.AuthenticationService;
 import com.andrii.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,10 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
     private final UserService userService;
+    private final AuthenticationService authenticationService;
 
     @PostMapping("/registration")
     @Operation(summary = "Register a new user")
     public UserResponseDto registerUser(@RequestBody @Valid UserRegistrationRequestDto requestDto) {
         return userService.register(requestDto);
+    }
+
+    @PostMapping("/login")
+    public UserLoginResponseDto login(@RequestBody UserLoginRequestDto requestDto) {
+        return authenticationService.authenticate(requestDto);
     }
 }
