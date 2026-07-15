@@ -1,6 +1,7 @@
 package com.andrii.service;
 
 import com.andrii.dto.book.BookDto;
+import com.andrii.dto.book.BookDtoWithoutCategoryIds;
 import com.andrii.dto.book.BookSearchParameters;
 import com.andrii.dto.book.CreateBookRequestDto;
 import com.andrii.dto.book.UpdateBookRequestDto;
@@ -20,4 +21,6 @@ public interface BookService {
     BookDto updateBookById(Long id, UpdateBookRequestDto requestDto);
 
     List<BookDto> search(BookSearchParameters params);
+
+    List<BookDtoWithoutCategoryIds> findAllByCategoryId(Long categoryId);
 }
