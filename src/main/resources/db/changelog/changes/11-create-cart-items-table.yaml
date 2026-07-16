@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-cart-items-table
+      author: freeman
+      changes:
+        - createTable:
+            tableName: cart_items
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: shopping_cart_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            constraintName: fk_cart_items_shopping_cart
+            baseTableName: cart_items
+            baseColumnNames: shopping_cart_id
+            referencedTableName: shopping_carts
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            constraintName: fk_cart_items_book
+            baseTableName: cart_items
+            baseColumnNames: book_id
+            referencedTableName: books
+            referencedColumnNames: id
+            onDelete: CASCADE
