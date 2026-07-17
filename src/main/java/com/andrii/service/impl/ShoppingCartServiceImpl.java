@@ -92,16 +92,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCartRepository.save(cart);
     }
 
+    @Override
+    @Transactional
+    public ShoppingCart createCart(User user) {
+        ShoppingCart cart = new ShoppingCart();
+        cart.setUser(user);
+        return shoppingCartRepository.save(cart);
+    }
+
     private Long getUserId() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || !auth.isAuthenticated()) {
-            throw new RuntimeException("User isn't authenticated");
-        }
-        String email = auth.getName();
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Can't find the user by email " + email
-                ));
+        User user = (User) auth.getPrincipal();
         return user.getId();
     }
 

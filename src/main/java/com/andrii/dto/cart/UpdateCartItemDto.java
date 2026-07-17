@@ -1,9 +1,9 @@
 package com.andrii.dto.cart;
 
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Positive;
 
 public record UpdateCartItemDto(
-        @Min(1)
+        @Positive
         int quantity
 ) {
 }
