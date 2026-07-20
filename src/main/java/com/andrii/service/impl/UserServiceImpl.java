@@ -10,6 +10,7 @@ import com.andrii.model.RoleName;
 import com.andrii.model.User;
 import com.andrii.repository.user.RoleRepository;
 import com.andrii.repository.user.UserRepository;
+import com.andrii.service.ShoppingCartService;
 import com.andrii.service.UserService;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final ShoppingCartService cartService;
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto requestDto) {
@@ -41,6 +43,8 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Set.of(role));
 
         User savedUser = userRepository.save(user);
+        cartService.createCart(savedUser);
+
         return userMapper.toUserResponse(savedUser);
     }
 }
