@@ -14,4 +14,10 @@ public interface OrderItemRepository
             Long id,
             Long orderId
     );
+
+    Optional<OrderItem> findByIdAndOrderIdAndOrderUserId(
+            Long itemId,
+            Long orderId,
+            Long userId
+    );
 }

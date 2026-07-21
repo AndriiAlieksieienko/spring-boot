@@ -12,7 +12,6 @@ import org.mapstruct.Mapping;
 )
 public interface OrderMapper {
 
-    @Mapping(target = "userId",
-            source = "user.id")
+    @Mapping(target = "userId", source = "user.id")
     OrderDto toDto(Order order);
 }

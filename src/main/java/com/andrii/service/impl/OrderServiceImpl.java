@@ -4,6 +4,7 @@ import com.andrii.dto.order.CreateOrderRequestDto;
 import com.andrii.dto.order.OrderDto;
 import com.andrii.dto.order.OrderItemDto;
 import com.andrii.dto.order.UpdateOrderStatusDto;
+import com.andrii.exception.OrderProcessingException;
 import com.andrii.mapper.OrderItemMapper;
 import com.andrii.mapper.OrderMapper;
 import com.andrii.model.CartItem;
@@ -44,9 +45,7 @@ public class OrderServiceImpl implements OrderService {
         ShoppingCart cart = getShoppingCartByUserId(userId);
 
         if (cart.getCartItems().isEmpty()) {
-            throw new RuntimeException(
-                    "Shopping cart is empty"
-            );
+            throw new OrderProcessingException("Shopping cart is empty by userId " + userId);
         }
 
         Order order = createOrder(cart, requestDto);
@@ -70,16 +69,13 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = true)
     public List<OrderItemDto> getOrderItems(Long orderId) {
         Long userId = getUserId();
-        Order order = getOrder(orderId);
+        Order order = orderRepository
+                .findByIdAndUserId(orderId, userId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find order by id " + orderId)
+                );
 
-        if (!order.getUser().getId().equals(userId)) {
-            throw new RuntimeException(
-                    "Access denied"
-            );
-        }
-
-        return orderItemRepository
-                .findAllByOrderId(orderId)
+        return order.getOrderItems()
                 .stream()
                 .map(orderItemMapper::toDto)
                 .toList();
@@ -92,20 +88,11 @@ public class OrderServiceImpl implements OrderService {
             Long itemId
     ) {
         Long userId = getUserId();
-        Order order = getOrder(orderId);
-
-        if (!order.getUser().getId().equals(userId)) {
-            throw new RuntimeException(
-                    "Access denied"
-            );
-        }
-
         OrderItem orderItem = orderItemRepository
-                        .findByIdAndOrderId(itemId, orderId)
-                        .orElseThrow(() ->
-                                new EntityNotFoundException(
-                                        "Can't find item"
-                                ));
+                .findByIdAndOrderIdAndOrderUserId(itemId, orderId, userId)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Can't find order item by id " + itemId)
+                );
 
         return orderItemMapper.toDto(orderItem);
     }
@@ -135,9 +122,9 @@ public class OrderServiceImpl implements OrderService {
     private ShoppingCart getShoppingCartByUserId(Long userId) {
         return shoppingCartRepository
                 .findByUserId(userId)
-                .orElseThrow(() -> new com.andrii.exception.EntityNotFoundException(
-                        "Can't find the user by id " + userId
-                ));
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Can't find the user by id " + userId)
+                );
     }
 
     private Order createOrder(
