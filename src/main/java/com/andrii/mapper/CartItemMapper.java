@@ -25,6 +25,8 @@ public interface CartItemMapper {
             source = "book.title")
     CartItemDto toDto(CartItem cartItem);
 
-    void updateCartFromDto(@MappingTarget CartItem cartItem,
-                        UpdateCartItemDto dto);
+    void updateCartFromDto(
+            @MappingTarget CartItem cartItem,
+            UpdateCartItemDto dto
+    );
 }
